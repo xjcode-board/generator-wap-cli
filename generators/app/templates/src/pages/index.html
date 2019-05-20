@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" data-rem="375">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Demo</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="apple-mobile-web-app-capable" content="no" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" type="text/css" href="../css/index.css" />
+  <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript" src="../js/lib/uitls.js"></script>
+  <script type="text/javascript" src="../js/index.js"></script>
+  <div class="wrapper">
+    <ul class="list">
+      <!-- autoprefixer -->
+      <li class="exam">
+        <p class="title">1.postcss & autoprefixer</p>
+        <div class="src-code">
+          <p class="head">源文件src</p>
+          <pre><code class="code">
+            .test{
+              display:flex;
+            }
+          </code></pre>
+        </div>
+        <div class="dist-code">
+          <p class="head">编译后dist</p>
+          <pre><code class="code">
+            .test{
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+            }
+          </code></pre>
+        </div>
+      </li>
+      <!-- px->rem -->
+      <li class="exam">
+        <p class="title">2.postcss-pxtorem & posthtml-px2rem</p>
+        <div class="src-code">
+          <p class="head">px->rem 需开启选项</p>
+          <pre><code class="code">
+            .test{
+              display:flex;
+              padding:60px;
+              margin-top:30px;
+              font-size:32px;
+              line-height:1.2;
+              border:1px solid #dfdfdf;
+            }
+          </code></pre>
+          <p class="tips">注：计算比例75：1；支持style方式和内联方式</p>
+        </div>
+        <div class="dist-code">
+          <p class="head">编译后dist</p>
+          <pre><code class="code">
+            .test{
+              display:flex;
+              padding:.8rem;
+              margin-top:.4rem;
+              font-size:.426rem;
+              line-height:1.2;
+              border:1px solid #dfdfdf; //1px 不进行转换 可设置minPixelValue
+            }
+          </code></pre>
+        </div>
+      </li>
+      <!-- 本地代理 -->
+      <li class="exam">
+        <p class="title">3.http-proxy-middleware</p>
+        <div class="src-code">
+          <p class="head">需配置请求api地址</p>
+          <pre><code class="code">
+            {
+              "proxy":"http://test.api.com", //api接口地址
+            }
+          </code></pre>
+        </div>
+      </li>
+      <!-- 环境变量 -->
+      <li class="exam">
+        <p class="title">4.gulp-preprocess</p>
+        <div class="src-code">
+          <p class="head">需配置各环境api请求地址，具体环境变量（stg,pre,prd）可自行修改</p>
+          <pre><code class="code">
+            <!-- utils.js -->
+            {
+               // @if NODE_ENV = 'development'
+               env: 'dev',
+               // @endif
+               // @if NODE_ENV = 'test'
+               env: 'stg',
+               // @endif
+               // @if NODE_ENV = 'prelease'
+               env: 'rep',
+               // @endif
+               // @if NODE_ENV = 'production'
+               env: 'prd',
+               // @endif
+            }
+            <!-- package.json -->
+            {
+              "scripts": {
+                "dev": "gulp dev",
+                "test": "set NODE_ENV=test&&gulp build",
+                "pre": "set NODE_ENV=prelease&&gulp build",
+                "prd": "set NODE_ENV=production&&gulp build"
+                }
+            }
+          </code></pre>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

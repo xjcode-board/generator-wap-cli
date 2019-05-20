@@ -1,0 +1,21 @@
+{
+  "proxy":"xxx.com", //api接口地址
+  "livereload": {
+     "available": <%= includeLivereload %>, 
+     "port": 8080,
+     "startPath": "pages/pages.html"
+   },
+
+  "plugins": {
+    "dev": ["dev"]
+  },
+
+  "supportREM": <%= includeRem %>,
+
+  "supportSpider": <%= includeSpider %>,
+
+  "supportChanged": <%= includeChanged %>,
+
+  "reversion": <%= includeReversion %>
+
+}
